@@ -94,9 +94,8 @@ deuxieme=this.lastChild.src; // alors enregistrement du nom de la deuxième imag
 pointeur_deuxieme=this;
 
 if(premier!=deuxieme){ // ensuite test des 2 noms d'image
-    setTimeout(remettre, 5000);
+    setTimeout(remettre, 2000);
 }else{
-    console.log("gagné!")
     k +=1; // incrémentation du nombre de paire trouvée
     if(k==8){ // si toutes les paires retrouvées
         clearInterval(timer); // alors arrêt du timer et affichage du temps, et mise à jour du texte à afficher
