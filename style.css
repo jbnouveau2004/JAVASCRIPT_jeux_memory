@@ -25,7 +25,7 @@
     transition: 1s linear;
 }
 
-.rotation{
+.rotation{ /* class qui sera ajoutée et supprimé dans l'html*/
     transform: rotateY(180deg); 
 }
 
@@ -43,6 +43,9 @@
     position: absolute;
     transform: rotatex(0deg) translateZ(-1px);
 }
+
+
+/* Affichage où en est le jeu, le temps, etc... */
 
 p {
     display: none;

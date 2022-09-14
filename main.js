@@ -14,11 +14,10 @@ function melange(){
     var m;
     var btn=document.getElementsByClassName('carte');
 
-    for(i=0;i<16;i++){
-        while(i==l){
-        m= Math.floor(Math.random() * 9);
-        console.log(i+"et"+l+"par contre"+un+deux+trois+quatre+cinq+six+sept+huit);
-        switch(m){
+    for(i=0;i<16;i++){ // le tableau généré dans btn (0 à 15 inclus)
+        while(i==l){ // tant que la nouvelle carte choisit n'est pas trouvé
+        m= Math.floor(Math.random() * 9); // choix d'une carte
+        switch(m){ // la valeur de la carte est testée (si nouvelle ou juste 1 fois, sinon on relance une carte aléatoire)
             case 1:
                 if(un<2){un +=1; l +=1; btn[i].lastChild.src="img/" + m + ".jpg";}
                 break
@@ -48,22 +47,21 @@ function melange(){
     }
 }
 
-
+// timer
 var timer = setInterval(diminutiontemps, 1000);
 
 function diminutiontemps(){
     temps-=1;
     document.querySelector('#temps').innerText = temps;
-    if(temps==0){
+    if(temps==0){ // si temps écoulé
         j=2;
-        clearInterval(timer);
-        document.querySelector('p').style.display= "block";
+        clearInterval(timer); // alors arrêt timer
+        document.querySelector('p').style.display= "block"; // et affichage d'un texte
     }
 }
 
+// évènement pour chaque carte
 var btn=document.getElementsByClassName('carte');
-
-
 btn[0].addEventListener("click", retourner);
 btn[1].addEventListener("click", retourner);
 btn[2].addEventListener("click", retourner);
@@ -82,25 +80,26 @@ btn[14].addEventListener("click", retourner);
 btn[15].addEventListener("click", retourner);
 
 
+// fonction retourner carte
 function retourner(){
-if(j==0){
+if(j==0){ // si première carte retournée
 this.classList.toggle("rotation");
 j+=1;
-premier=this.lastChild.src;
+premier=this.lastChild.src; // alors enregistrement du nom de la première image
 pointeur_premier=this;
-}else if(j==1){
+}else if(j==1){ // si deuxième carte retournée
 this.classList.toggle("rotation");
 j+=1;
-deuxieme=this.lastChild.src;
+deuxieme=this.lastChild.src; // alors enregistrement du nom de la deuxième image
 pointeur_deuxieme=this;
 
-if(premier!=deuxieme){
+if(premier!=deuxieme){ // ensuite test des 2 noms d'image
     setTimeout(remettre, 5000);
 }else{
     console.log("gagné!")
-    k +=1;
-    if(k==8){
-        clearInterval(timer);
+    k +=1; // incrémentation du nombre de paire trouvée
+    if(k==8){ // si toutes les paires retrouvées
+        clearInterval(timer); // alors arrêt du timer et affichage du temps, et mise à jour du texte à afficher
         document.querySelector('#temps').style.display= "none";
         document.querySelector('#temps2').style.display= "none";
         document.querySelector('#temps3').style.display= "block";
@@ -114,6 +113,7 @@ if(premier!=deuxieme){
 }
 }
 
+// fonction retourner une paire de carte choisit qui n'est pas identique
 function remettre(){
     pointeur_premier.classList.toggle("rotation");
     pointeur_deuxieme.classList.toggle("rotation");
